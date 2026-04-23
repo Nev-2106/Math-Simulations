@@ -6,7 +6,7 @@ omega = 2.0
 x0 = 1.0
 v0 = 0.0
 mass = 1.0
-ar = 0.01
+ar = 1.0 # damping coefficient
 t=np.linspace(0, 10, 1000)
 g=9.81
 
