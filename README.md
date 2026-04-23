@@ -71,3 +71,25 @@ Future direction includes:
 ---
 
 ## 📂 Project Structure
+Math-Simulations/
+│── solve_ode_pendulum.py # Pendulum simulation using ODEs
+│── README.md # Project documentation
+---
+---
+
+### 📌 Notes
+
+- Currently focused on **basic ODE simulations and numerical solving**
+- Structure will evolve as more areas are added:
+  - PDE solvers
+  - Fourier & Laplace transforms
+  - Physics-based simulations
+  - Lithography computation models
+
+
+## ⚙️ Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Nev-2106/Math-Simulations.git
+cd Math-Simulations
