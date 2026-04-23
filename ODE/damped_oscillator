@@ -7,10 +7,10 @@ omega = 2.0
 x0 = 1.0
 v0 = 0.0
 mass = 1.0
-ar = 0.01
-t=np.linspace(0, 10, 1000)
+ar = 0.0
+t=np.linspace(0, 40, 10000)
 g=9.81
-t_span = (0, 10)
+t_span = (0, 40)
 t_eval = t
 
 
@@ -18,7 +18,7 @@ def damped_oscillator(t, y):
     force = -mass * g * np.sin(y[0]) - ar * y[1]
     x, v = y
     dxdt = v
-    dvdt = (force*np.cos(omega*t)-v*ar-omega**2*x)
+    dvdt = ((force*np.cos(omega*t))-v*ar-(omega**2*x))
     return [dxdt, dvdt]
 
 # Solve
