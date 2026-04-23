@@ -7,32 +7,33 @@ omega = 2.0
 x0 = 1.0
 v0 = 0.0
 mass = 1.0
-ar = 0.0
-t=np.linspace(0, 40, 10000)
-g=9.81
+ar = 0.0  # damping coefficient
+t = np.linspace(0, 40, 10000)
+g = 9.81
+L = g / (omega ** 2)  # length of pendulum
 t_span = (0, 40)
 t_eval = t
 
 
-def damped_oscillator(t, y):
-    force = -mass * g * np.sin(y[0]) - ar * y[1]
-    x, v = y
-    dxdt = v
-    dvdt = (force*np.cos(omega*t)-v*ar-omega**2*x)
-    return [dxdt, dvdt]
+def pendulum(t, y):
+    theta, omega_ang = y
+    dtheta_dt = omega_ang
+    domega_dt = - (g / L) * np.sin(theta) - (ar / mass) * omega_ang
+    return [dtheta_dt, domega_dt]
 
-# Solve
-sol = solve_ivp(damped_oscillator, t_span, [x0, v0], t_eval=t_eval, method='RK45')
 
-# Plot
-fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+# Solve the ODE
+sol = solve_ivp(pendulum, t_span, [x0, v0], t_eval=t_eval)
 
-# Time series
-axes[0].plot(sol.t, sol.y[0], label='Numerical', lw=2)
-# axes[0].plot(t_eval, x_analytical, '--', label='Analytical', lw=2)
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 9))
+
+# Plot time series
+axes[0].plot(sol.t, sol.y[0], label='Angle (rad)', lw=2)
+axes[0].plot(sol.t, sol.y[1], label='Angular velocity (rad/s)', lw=2)
 axes[0].set_xlabel("Time (s)")
-axes[0].set_ylabel("Displacement x (m)")
-axes[0].set_title(f"Damped Oscillator (ω = {omega} rad/s)")
+axes[0].set_ylabel("Value")
+axes[0].set_title("Pendulum Simulation Time Series")
 axes[0].legend()
 axes[0].grid(True)
 
