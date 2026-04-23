@@ -18,7 +18,7 @@ def damped_oscillator(t, y):
     force = -mass * g * np.sin(y[0]) - ar * y[1]
     x, v = y
     dxdt = v
-    dvdt = ((force*np.cos(omega*t))-v*ar-(omega**2*x))
+    dvdt = (force*np.cos(omega*t)-v*ar-omega**2*x)
     return [dxdt, dvdt]
 
 # Solve
