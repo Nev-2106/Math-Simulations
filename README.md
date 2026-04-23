@@ -70,13 +70,6 @@ Future direction includes:
 
 ---
 
-## 📂 Project Structure
-Math-Simulations/
-│── solve_ode_pendulum.py # Pendulum simulation using ODEs
-│── README.md # Project documentation
----
----
-
 ### 📌 Notes
 
 - Currently focused on **basic ODE simulations and numerical solving**
