@@ -7,7 +7,7 @@ omega = 2.0
 x0 = 1.0
 v0 = 0.0
 mass = 1.0
-ar = 0.0  # damping coefficient
+ar = 2  # damping coefficient
 t = np.linspace(0, 40, 10000)
 g = 9.81
 L = g / (omega ** 2)  # length of pendulum
@@ -46,3 +46,4 @@ axes[1].grid(True)
 
 plt.tight_layout()
 plt.show()
+
