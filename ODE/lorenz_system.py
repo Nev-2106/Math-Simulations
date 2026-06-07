@@ -58,6 +58,17 @@ def lorenz(t, y):
 solution = solve_ivp(lorenz, t_span, y0, t_eval=t_eval,method='RK45')
 trajectories = solution.y.reshape(4, 3, -1)  # shape (4, 3, n_pts)
 
+# pairwise distances for plotting
+distances = np.zeros((4, 4, len(t_eval)))
+for i in range(4):
+    for j in range(i+1, 4):
+        dx = trajectories[i, 0] - trajectories[j, 0]
+        dy = trajectories[i, 1] - trajectories[j, 1]
+        dz = trajectories[i, 2] - trajectories[j, 2]
+        distances[i, j] = np.sqrt(dx**2 + dy**2 + dz**2)
+        distances[j, i] = distances[i, j]  # symmetric
+
+
 # Plotting
 fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111, projection='3d')
@@ -70,3 +81,13 @@ ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 ax.legend()
 
+#plotting pairwise distances
+fig2, ax2 = plt.subplots(figsize=(10, 6))
+for i in range(4):
+    for j in range(i+1, 4):
+        ax2.plot(t_eval, distances[i, j], label=f"{labels[i]}-{labels[j]}")
+ax2.set_title("Pairwise Distances Over Time")
+ax2.set_xlabel("Time")
+ax2.set_ylabel("Distance")
+ax2.legend()
+plt.show()
